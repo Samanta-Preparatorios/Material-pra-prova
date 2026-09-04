@@ -1,1 +1,1175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reprodução Humana — Material de Estudo | Curso Preparatório Professora Samanta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F2F6F2;
+    --bg-panel: #FFFFFF;
+    --ink: #1E2A32;
+    --ink-soft: #4A5A61;
+    --line: #D8E2DD;
+    --rose: #C0466A;
+    --rose-tint: #FBE9EE;
+    --teal: #227A72;
+    --teal-tint: #E3F2EE;
+    --gold: #B98A22;
+    --gold-tint: #FBF1DD;
+    --indigo: #3A4E82;
+    --indigo-tint: #E9EDF8;
+    --correct: #2F8F5B;
+    --incorrect: #C0466A;
+    --radius-s: 6px;
+    --radius-m: 14px;
+    --shadow: 0 1px 2px rgba(30,42,50,0.06), 0 6px 20px rgba(30,42,50,0.05);
+    --maxw: 860px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Karla', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.15;
+    color:var(--ink);
+    margin:0 0 0.5em 0;
+  }
+  p{margin:0 0 1em 0; max-width:72ch;}
+  a{color:var(--indigo);}
+  ::selection{background:var(--rose-tint); color:var(--rose);}
 
+  /* HEADER */
+  .site-header{
+    background:var(--bg-panel);
+    border-bottom:1px solid var(--line);
+  }
+  .site-header__inner{
+    max-width:1040px;
+    margin:0 auto;
+    padding:22px 28px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  .logo-wrap{
+    width:64px; height:64px;
+    flex:none;
+    border-radius:50%;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--indigo-tint);
+    border:1px solid var(--line);
+  }
+  .logo-wrap img{width:100%; height:100%; object-fit:cover;}
+  .logo-fallback{
+    display:none;
+    width:100%; height:100%;
+    align-items:center; justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:22px;
+    color:var(--indigo);
+  }
+  .brand-text .kicker{
+    display:block;
+    font-family:'Karla', sans-serif;
+    font-weight:700;
+    font-size:12.5px;
+    letter-spacing:0.02em;
+    color:var(--rose);
+    margin-bottom:2px;
+  }
+  .brand-text h1{
+    font-size:clamp(20px, 3vw, 26px);
+    margin:0;
+  }
+  .brand-text .subtitle{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    margin-top:2px;
+  }
+
+  main{max-width:var(--maxw); margin:0 auto; padding:0 28px 60px;}
+
+  /* INTRO / TOC */
+  .intro{padding:42px 0 8px;}
+  .intro p{color:var(--ink-soft);}
+  .toc{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(210px,1fr));
+    gap:10px;
+    list-style:none;
+    padding:0; margin:22px 0 0;
+  }
+  .toc li a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    padding:12px 14px;
+    text-decoration:none;
+    color:var(--ink);
+    font-weight:600;
+    font-size:14.5px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .toc li a:hover{border-color:var(--rose); transform:translateY(-1px);}
+  .toc .num{
+    font-family:'Fraunces', serif;
+    color:var(--rose);
+    font-size:18px;
+    min-width:20px;
+  }
+
+  /* TOPIC SECTIONS */
+  .topic{
+    margin-top:48px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+  }
+  .topic__eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:700;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .topic__eyebrow .dot{width:9px; height:9px; border-radius:50%; background:var(--rose);}
+  .topic h2{font-size:clamp(22px,3vw,30px);}
+  .topic .lede{color:var(--ink-soft); font-size:16px;}
+
+  .panel{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius-m);
+    padding:22px 24px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+  }
+  .panel h3{font-size:17px; font-family:'Karla',sans-serif; font-weight:700; margin-bottom:10px;}
+  .panel--tint-rose{background:var(--rose-tint); border-color:transparent; box-shadow:none;}
+  .panel--tint-teal{background:var(--teal-tint); border-color:transparent; box-shadow:none;}
+  .panel--tint-gold{background:var(--gold-tint); border-color:transparent; box-shadow:none;}
+  .panel--tint-indigo{background:var(--indigo-tint); border-color:transparent; box-shadow:none;}
+
+  ul.clean, ol.clean{padding-left:20px; margin:0 0 1em;}
+  ul.clean li, ol.clean li{margin-bottom:6px;}
+
+  figure{margin:18px 0;}
+  figure svg{width:100%; height:auto; display:block;}
+  figcaption{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-top:8px;
+    text-align:center;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:16px 0;
+    font-size:15px;
+    background:var(--bg-panel);
+    border-radius:var(--radius-s);
+    overflow:hidden;
+  }
+  th,td{
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  thead th{
+    background:var(--indigo);
+    color:#fff;
+    font-family:'Karla',sans-serif;
+    font-weight:700;
+    font-size:13.5px;
+  }
+  tbody tr:nth-child(even){background:#FAFCFB;}
+
+  .tag{
+    display:inline-block;
+    padding:2px 9px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+  }
+  .tag--sexuada{background:var(--teal-tint); color:var(--teal);}
+  .tag--assexuada{background:var(--rose-tint); color:var(--rose);}
+  .tag--sim{background:#E3F2EE; color:var(--teal);}
+  .tag--nao{background:var(--rose-tint); color:var(--rose);}
+
+  /* QUIZ */
+  .quiz-intro{
+    background:var(--indigo);
+    color:#fff;
+    border-radius:var(--radius-m);
+    padding:26px 28px;
+    margin-top:52px;
+  }
+  .quiz-intro h2{color:#fff;}
+  .quiz-intro p{color:#DCE3F5; margin-bottom:0;}
+
+  .quiz-group{margin-top:34px;}
+  .quiz-group__title{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif;
+    font-size:19px;
+    font-weight:600;
+    margin-bottom:14px;
+    padding-bottom:8px;
+    border-bottom:2px solid var(--line);
+  }
+  .quiz-group__title .num-badge{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:26px; height:26px; border-radius:50%;
+    background:var(--rose); color:#fff;
+    font-family:'Karla',sans-serif; font-weight:700; font-size:13px;
+  }
+
+  fieldset.question{
+    border:1px solid var(--line);
+    border-radius:var(--radius-m);
+    background:var(--bg-panel);
+    padding:16px 18px 18px;
+    margin:0 0 14px;
+  }
+  fieldset.question legend{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+    font-weight:700;
+    font-size:15.5px;
+    padding:0 4px;
+    color:var(--ink);
+  }
+  fieldset.question .q-text{flex:1; min-width:220px;}
+  .badge{
+    font-size:11px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:999px;
+    letter-spacing:.01em;
+  }
+  .badge--facil{background:var(--teal-tint); color:var(--teal);}
+  .badge--medio{background:var(--gold-tint); color:var(--gold);}
+  .badge--dificil{background:var(--rose-tint); color:var(--rose);}
+
+  .options{list-style:none; padding:0; margin:12px 0 0; display:grid; gap:8px;}
+  .options label{
+    display:flex; align-items:flex-start; gap:10px;
+    padding:9px 12px;
+    border:1px solid var(--line);
+    border-radius:var(--radius-s);
+    cursor:pointer;
+    font-size:15px;
+    transition:background .12s ease, border-color .12s ease;
+  }
+  .options label:hover{border-color:var(--indigo);}
+  .options input{margin-top:4px;}
+
+  fieldset.question.is-correct{border-color:var(--correct); background:#F3FAF6;}
+  fieldset.question.is-incorrect{border-color:var(--incorrect); background:#FDF3F5;}
+  fieldset.question.is-correct .options label.was-selected{border-color:var(--correct); background:#E6F5EC;}
+  fieldset.question.is-incorrect .options label.was-selected{border-color:var(--incorrect); background:#FBE7EC;}
+  fieldset.question .options label.is-answer{border-color:var(--correct); box-shadow:inset 0 0 0 1px var(--correct);}
+
+  .result-pill{
+    display:none;
+    margin-top:10px;
+    font-size:13.5px;
+    font-weight:700;
+    padding:6px 10px;
+    border-radius:var(--radius-s);
+  }
+  fieldset.question.is-correct .result-pill{display:inline-block; background:#E6F5EC; color:var(--correct);}
+  fieldset.question.is-incorrect .result-pill{display:inline-block; background:#FBE7EC; color:var(--incorrect);}
+
+  .btn{
+    appearance:none; border:none; cursor:pointer;
+    background:var(--rose);
+    color:#fff;
+    font-family:'Karla',sans-serif;
+    font-weight:700;
+    font-size:15.5px;
+    padding:13px 26px;
+    border-radius:999px;
+    box-shadow:var(--shadow);
+    transition:transform .12s ease, background .12s ease;
+  }
+  .btn:hover{background:#A73B5B; transform:translateY(-1px);}
+  .btn:active{transform:translateY(0);}
+  .btn-row{display:flex; justify-content:center; margin:30px 0 4px;}
+  .btn[disabled]{opacity:.5; cursor:not-allowed; transform:none;}
+
+  /* RESULTS */
+  #resultados, #gabarito{display:none;}
+  #resultados.show, #gabarito.show{display:block;}
+
+  .results-grid{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:32px;
+    align-items:center;
+    margin:26px 0;
+  }
+  @media (max-width:640px){.results-grid{grid-template-columns:1fr; justify-items:center;}}
+
+  .pie{
+    width:200px; height:200px;
+    border-radius:50%;
+    background:conic-gradient(var(--correct) 0%, var(--correct) 0%, var(--incorrect) 0%, var(--incorrect) 0%);
+    position:relative;
+    box-shadow:var(--shadow);
+    flex:none;
+  }
+  .pie::after{
+    content:"";
+    position:absolute; inset:26px;
+    background:var(--bg-panel);
+    border-radius:50%;
+    display:flex;
+  }
+  .pie-label{
+    position:absolute; inset:26px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+  }
+  .pie-label .pct{font-family:'Fraunces',serif; font-size:30px; font-weight:700; color:var(--ink);}
+  .pie-label .cap{font-size:11.5px; color:var(--ink-soft); font-weight:700;}
+
+  .legend{display:flex; gap:18px; margin-top:14px; flex-wrap:wrap;}
+  .legend span{display:flex; align-items:center; gap:6px; font-size:13.5px; color:var(--ink-soft); font-weight:600;}
+  .legend i{width:11px; height:11px; border-radius:3px; display:inline-block;}
+
+  .topic-bars{display:grid; gap:12px;}
+  .topic-bar__row{display:grid; grid-template-columns:180px 1fr 44px; align-items:center; gap:10px; font-size:14px;}
+  .topic-bar__track{background:#EDF1EE; border-radius:999px; height:10px; overflow:hidden;}
+  .topic-bar__fill{height:100%; border-radius:999px; width:0%; transition:width .6s ease;}
+  .topic-bar__score{font-weight:700; text-align:right; font-size:13px; color:var(--ink-soft);}
+
+  .study-plan{margin-top:22px;}
+  .study-plan ol{padding-left:20px;}
+  .study-plan li{margin-bottom:10px;}
+  .study-plan strong{color:var(--rose);}
+
+  .gabarito-item{
+    border-bottom:1px dashed var(--line);
+    padding:14px 0;
+  }
+  .gabarito-item:last-child{border-bottom:none;}
+  .gabarito-item .g-head{display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-weight:700; margin-bottom:6px;}
+  .gabarito-item .g-answer{color:var(--correct); font-weight:700;}
+  .gabarito-item .g-explain{color:var(--ink-soft); font-size:15px; margin:0;}
+
+  /* FOOTER */
+  footer{
+    background:var(--indigo);
+    color:#EDF0FA;
+    margin-top:60px;
+  }
+  .footer-inner{
+    max-width:1040px; margin:0 auto;
+    padding:34px 28px 30px;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:28px;
+  }
+  @media (max-width:640px){.footer-inner{grid-template-columns:1fr;}}
+  footer h4{color:#fff; font-size:14px; font-family:'Karla',sans-serif; letter-spacing:.02em; margin-bottom:8px;}
+  footer p, footer a{color:#C9D1EE; font-size:14px; margin:0 0 4px;}
+  footer a{text-decoration:underline;}
+  .footer-note{
+    font-size:12.5px;
+    color:#93A0CC;
+    max-width:1040px; margin:0 auto;
+    padding:14px 28px 26px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="logo-wrap">
+      <img src="Logo preparatorio1.jpeg" alt="Logo do Curso Preparatório Professora Samanta"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="logo-fallback">PS</div>
+    </div>
+    <div class="brand-text">
+      <span class="kicker">CURSO PREPARATÓRIO PROFESSORA SAMANTA</span>
+      <h1>Reprodução Humana</h1>
+      <div class="subtitle">Ciências da Natureza — material de revisão e questionário avaliativo</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="intro">
+    <p>Este material reúne a revisão dos conteúdos programados sobre reprodução humana e, em seguida, um questionário de fixação com questões fáceis, médias e difíceis. Ao final, você confere o gabarito comentado e um painel com o seu desempenho.</p>
+    <ul class="toc">
+      <li><a href="#topico-1"><span class="num">1</span> Tipos de reprodução</a></li>
+      <li><a href="#topico-2"><span class="num">2</span> Fases da vida humana</a></li>
+      <li><a href="#topico-3"><span class="num">3</span> Sistema genital feminino</a></li>
+      <li><a href="#topico-4"><span class="num">4</span> Sistema genital masculino</a></li>
+      <li><a href="#topico-5"><span class="num">5</span> Ciclo menstrual</a></li>
+      <li><a href="#topico-6"><span class="num">6</span> Métodos contraceptivos</a></li>
+      <li><a href="#quiz"><span class="num">✎</span> Questionário</a></li>
+      <li><a href="#resultados"><span class="num">%</span> Resultado e gabarito</a></li>
+    </ul>
+  </section>
+
+  <section id="topico-1" class="topic">
+    <span class="topic__eyebrow"><span class="dot" style="background:var(--rose)"></span>TÓPICO 1</span>
+    <h2>Tipos de reprodução</h2>
+    <p class="lede">Os seres vivos perpetuam a espécie por meio de dois grandes mecanismos: a reprodução sexuada e a reprodução assexuada. Eles se diferenciam pelo número de progenitores envolvidos e pela variabilidade genética que produzem.</p>
+
+    <figure>
+      <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparação entre reprodução assexuada e sexuada">
+        <rect x="0" y="0" width="370" height="220" rx="16" fill="#FBE9EE"/>
+        <rect x="390" y="0" width="370" height="220" rx="16" fill="#E3F2EE"/>
+        <text x="185" y="34" text-anchor="middle" font-family="Karla, sans-serif" font-weight="700" font-size="15" fill="#C0466A">ASSEXUADA — um único progenitor</text>
+        <text x="575" y="34" text-anchor="middle" font-family="Karla, sans-serif" font-weight="700" font-size="15" fill="#227A72">SEXUADA — dois progenitores</text>
+        <circle cx="150" cy="110" r="26" fill="#C0466A"/>
+        <path d="M176 110 L215 110" stroke="#7A2E45" stroke-width="2" marker-end="url(#arrow1)"/>
+        <circle cx="245" cy="88" r="18" fill="#C0466A"/>
+        <circle cx="245" cy="132" r="18" fill="#C0466A"/>
+        <text x="150" y="165" text-anchor="middle" font-family="Karla, sans-serif" font-size="12" fill="#7A2E45">1 indivíduo</text>
+        <text x="245" y="165" text-anchor="middle" font-family="Karla, sans-serif" font-size="12" fill="#7A2E45">2 clones idênticos</text>
+        <circle cx="520" cy="110" r="20" fill="#227A72"/>
+        <circle cx="565" cy="110" r="20" fill="#3A4E82"/>
+        <path d="M540 110 L545 110" stroke="#1F4A44" stroke-width="2"/>
+        <path d="M542 145 L542 168" stroke="#1F4A44" stroke-width="2" marker-end="url(#arrow2)"/>
+        <circle cx="542" cy="188" r="17" fill="#6C5A9E"/>
+        <text x="520" y="145" text-anchor="middle" font-family="Karla, sans-serif" font-size="11" fill="#1F4A44">gameta 1</text>
+        <text x="565" y="145" text-anchor="middle" font-family="Karla, sans-serif" font-size="11" fill="#1F4A44">gameta 2</text>
+        <defs>
+          <marker id="arrow1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7A2E45"/></marker>
+          <marker id="arrow2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1F4A44"/></marker>
+        </defs>
+      </svg>
+      <figcaption>Reprodução assexuada gera clones a partir de um único progenitor; a reprodução sexuada funde gametas de dois progenitores, formando um zigoto geneticamente novo.</figcaption>
+    </figure>
+
+    <table>
+      <thead><tr><th>Característica</th><th>Reprodução assexuada</th><th>Reprodução sexuada</th></tr></thead>
+      <tbody>
+        <tr><td>Progenitores</td><td><span class="tag tag--assexuada">1 indivíduo</span></td><td><span class="tag tag--sexuada">2 indivíduos</span></td></tr>
+        <tr><td>Formação de gametas</td><td>Não há</td><td>Há, por meiose</td></tr>
+        <tr><td>Variabilidade genética</td><td>Baixa (clones)</td><td>Alta (recombinação)</td></tr>
+        <tr><td>Velocidade de propagação</td><td>Rápida</td><td>Mais lenta</td></tr>
+        <tr><td>Exemplos de mecanismo</td><td>Bipartição, brotamento, fragmentação, esporulação, partenogênese</td><td>Fecundação (fusão de gametas)</td></tr>
+        <tr><td>Exemplos de organismos</td><td>Bactérias, hidra, leveduras, planárias</td><td>Maioria dos animais, incluindo o ser humano</td></tr>
+      </tbody>
+    </table>
+
+    <div class="panel panel--tint-rose">
+      <h3>Mecanismos de reprodução assexuada</h3>
+      <ul class="clean">
+        <li><strong>Bipartição (cissiparidade):</strong> o organismo se divide em dois, comum em bactérias e protozoários.</li>
+        <li><strong>Brotamento:</strong> um broto cresce no corpo do progenitor e se destaca, como na hidra e em leveduras.</li>
+        <li><strong>Fragmentação:</strong> pedaços do corpo regeneram um indivíduo completo, como em planárias.</li>
+        <li><strong>Esporulação:</strong> formação de esporos resistentes, comum em fungos.</li>
+        <li><strong>Partenogênese:</strong> o óvulo se desenvolve sem fecundação, observada em alguns insetos e répteis.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="topico-2" class="topic">
+    <span class="topic__eyebrow"><span class="dot" style="background:var(--teal)"></span>TÓPICO 2</span>
+    <h2>Fases da vida humana</h2>
+    <p class="lede">Do nascimento à velhice, o corpo humano passa por fases marcadas por mudanças físicas, hormonais e sociais. As fases não têm limites rígidos, mas seguem uma referência etária amplamente aceita.</p>
+
+    <figure>
+      <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Linha do tempo das fases da vida humana">
+        <line x1="40" y1="120" x2="740" y2="120" stroke="#D8E2DD" stroke-width="4"/>
+        <!-- nodes -->
+        <g font-family="Karla, sans-serif">
+          <circle cx="80" cy="120" r="16" fill="#227A72"/>
+          <text x="80" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1E2A32">Infância</text>
+          <text x="80" y="165" text-anchor="middle" font-size="11" fill="#4A5A61">0–9 anos</text>
+
+          <circle cx="220" cy="120" r="19" fill="#C0466A"/>
+          <text x="220" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1E2A32">Puberdade</text>
+          <text x="220" y="165" text-anchor="middle" font-size="11" fill="#4A5A61">~10–14 anos</text>
+
+          <circle cx="360" cy="120" r="19" fill="#B98A22"/>
+          <text x="360" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1E2A32">Adolescência</text>
+          <text x="360" y="165" text-anchor="middle" font-size="11" fill="#4A5A61">10–19 anos (OMS)</text>
+
+          <circle cx="500" cy="120" r="19" fill="#3A4E82"/>
+          <text x="500" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1E2A32">Fase adulta</text>
+          <text x="500" y="165" text-anchor="middle" font-size="11" fill="#4A5A61">20–59 anos</text>
+
+          <circle cx="640" cy="120" r="17" fill="#6C5A9E"/>
+          <text x="640" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#1E2A32">Velhice</text>
+          <text x="640" y="165" text-anchor="middle" font-size="11" fill="#4A5A61">60+ anos</text>
+        </g>
+        <text x="80" y="90" text-anchor="middle" font-size="20">🍼</text>
+        <text x="220" y="92" text-anchor="middle" font-size="22">🌱</text>
+        <text x="360" y="92" text-anchor="middle" font-size="22">🎓</text>
+        <text x="500" y="92" text-anchor="middle" font-size="22">💼</text>
+        <text x="640" y="90" text-anchor="middle" font-size="20">🌿</text>
+      </svg>
+      <figcaption>Faixas etárias de referência — os limites variam conforme a fonte e as características individuais.</figcaption>
+    </figure>
+
+    <div class="panel">
+      <h3>Marcos importantes</h3>
+      <ul class="clean">
+        <li><strong>Puberdade:</strong> período de maturação sexual, com surgimento dos caracteres sexuais secundários (pelos, mudança de voz, desenvolvimento das mamas, etc.). Nas meninas, marcada pela <strong>menarca</strong> (primeira menstruação); nos meninos, pela <strong>semenarca</strong> (primeira ejaculação).</li>
+        <li><strong>Adolescência:</strong> fase de transição biológica, psicológica e social entre a infância e a vida adulta.</li>
+        <li><strong>Fase adulta:</strong> estabilização do crescimento e plena capacidade reprodutiva.</li>
+        <li><strong>Velhice (senescência):</strong> redução gradual das funções orgânicas, incluindo o declínio da função reprodutiva (menopausa nas mulheres).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="topico-3" class="topic">
+    <span class="topic__eyebrow"><span class="dot" style="background:var(--rose)"></span>TÓPICO 3</span>
+    <h2>Sistema genital feminino</h2>
+    <p class="lede">O sistema genital feminino produz os óvulos, abriga a fecundação e sustenta o desenvolvimento do bebê durante a gestação.</p>
+
+    <figure>
+      <svg viewBox="0 0 620 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Esquema das estruturas do sistema genital feminino">
+        <ellipse cx="215" cy="70" rx="34" ry="22" fill="#F3C7D3" stroke="#C0466A" stroke-width="2"/>
+        <ellipse cx="405" cy="70" rx="34" ry="22" fill="#F3C7D3" stroke="#C0466A" stroke-width="2"/>
+        <path d="M249 70 C 300 55, 320 55, 310 100 C 305 130, 280 140, 260 150" fill="none" stroke="#C0466A" stroke-width="10" stroke-linecap="round"/>
+        <path d="M371 70 C 320 55, 300 55, 310 100 C 315 130, 340 140, 360 150" fill="none" stroke="#C0466A" stroke-width="10" stroke-linecap="round"/>
+        <path d="M235 60 l -14 -10 M235 60 l -18 2 M235 60 l -10 14" stroke="#C0466A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M385 60 l 14 -10 M385 60 l 18 2 M385 60 l 10 14" stroke="#C0466A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M260 150 C 240 190, 240 210, 310 220 C 380 210, 380 190, 360 150 Z" fill="#F0AABF" stroke="#C0466A" stroke-width="2"/>
+        <rect x="290" y="218" width="40" height="70" fill="#F0AABF" stroke="#C0466A" stroke-width="2"/>
+        <path d="M270 288 C 280 330, 340 330, 350 288 Z" fill="#F3C7D3" stroke="#C0466A" stroke-width="2"/>
+        <g font-family="Karla, sans-serif" font-size="13" fill="#1E2A32">
+          <line x1="215" y1="70" x2="120" y2="30" stroke="#8A8F90" stroke-width="1"/>
+          <text x="30" y="34">Ovário</text>
+          <line x1="270" y1="80" x2="150" y2="90" stroke="#8A8F90" stroke-width="1"/>
+          <text x="20" y="94">Tuba uterina (trompa)</text>
+          <line x1="235" y1="60" x2="120" y2="140" stroke="#8A8F90" stroke-width="1"/>
+          <text x="20" y="144">Fímbrias</text>
+          <line x1="310" y1="175" x2="470" y2="175" stroke="#8A8F90" stroke-width="1"/>
+          <text x="478" y="179">Útero (endométrio interno)</text>
+          <line x1="310" y1="240" x2="470" y2="255" stroke="#8A8F90" stroke-width="1"/>
+          <text x="478" y="259">Colo do útero</text>
+          <line x1="310" y1="300" x2="470" y2="310" stroke="#8A8F90" stroke-width="1"/>
+          <text x="478" y="314">Vagina</text>
+        </g>
+      </svg>
+      <figcaption>Esquema simplificado (vista frontal) das principais estruturas internas do sistema genital feminino.</figcaption>
+    </figure>
+
+    <table>
+      <thead><tr><th>Estrutura</th><th>Função principal</th></tr></thead>
+      <tbody>
+        <tr><td>Ovários</td><td>Produzem os óvulos e os hormônios estrogênio e progesterona</td></tr>
+        <tr><td>Tubas uterinas</td><td>Conduzem o óvulo até o útero; local mais comum da fecundação</td></tr>
+        <tr><td>Útero</td><td>Órgão onde o embrião se implanta (nidação) e se desenvolve durante a gestação</td></tr>
+        <tr><td>Colo do útero (cérvix)</td><td>Conecta o útero à vagina; controla a passagem de espermatozoides e do bebê no parto</td></tr>
+        <tr><td>Vagina</td><td>Canal que recebe o pênis na cópula e serve de canal de parto</td></tr>
+      </tbody>
+    </table>
+
+    <div class="panel panel--tint-rose">
+      <h3>Fecundação</h3>
+      <p>A fecundação é o encontro entre o espermatozoide e o óvulo, formando o zigoto. Ela ocorre normalmente na <strong>ampola da tuba uterina</strong>, poucas horas após a relação sexual. Em seguida, o zigoto passa por sucessivas divisões celulares enquanto é conduzido até o útero, onde se implanta na parede uterina (endométrio) em um processo chamado <strong>nidação</strong>, cerca de 6 a 10 dias após a fecundação — início da gestação.</p>
+    </div>
+  </section>
+
+  <section id="topico-4" class="topic">
+    <span class="topic__eyebrow"><span class="dot" style="background:var(--indigo)"></span>TÓPICO 4</span>
+    <h2>Sistema genital masculino</h2>
+    <p class="lede">O sistema genital masculino produz os espermatozoides e o sêmen, além de conduzi-los para fora do corpo durante a ejaculação.</p>
+
+    <figure>
+      <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Esquema das estruturas do sistema genital masculino">
+        <ellipse cx="330" cy="70" rx="46" ry="30" fill="#CBD4EE" stroke="#3A4E82" stroke-width="2"/>
+        <path d="M300 95 C 260 120, 260 150, 300 165 L 330 150 C 320 130, 320 110, 330 95 Z" fill="#B7C2E8" stroke="#3A4E82" stroke-width="2"/>
+        <path d="M330 100 C 380 110, 400 140, 400 170 L 420 210" fill="none" stroke="#3A4E82" stroke-width="6" stroke-linecap="round"/>
+        <ellipse cx="440" cy="222" rx="26" ry="18" fill="#B7C2E8" stroke="#3A4E82" stroke-width="2"/>
+        <rect x="405" y="170" width="34" height="34" rx="10" fill="#CBD4EE" stroke="#3A4E82" stroke-width="2"/>
+        <path d="M420 210 C 350 230, 280 240, 220 240" fill="none" stroke="#3A4E82" stroke-width="8" stroke-linecap="round"/>
+        <ellipse cx="200" cy="255" rx="34" ry="24" fill="#E7CBB8" stroke="#8A5A34" stroke-width="2"/>
+        <path d="M170 250 C 150 250, 140 260, 145 275" fill="none" stroke="#8A5A34" stroke-width="6" stroke-linecap="round"/>
+        <ellipse cx="140" cy="278" rx="20" ry="26" fill="#F0DCC9" stroke="#8A5A34" stroke-width="2"/>
+        <g font-family="Karla, sans-serif" font-size="13" fill="#1E2A32">
+          <line x1="330" y1="70" x2="470" y2="50" stroke="#8A8F90" stroke-width="1"/>
+          <text x="475" y="54">Bexiga</text>
+          <line x1="310" y1="130" x2="470" y2="115" stroke="#8A8F90" stroke-width="1"/>
+          <text x="475" y="119">Vesícula seminal</text>
+          <line x1="415" y1="185" x2="480" y2="175" stroke="#8A8F90" stroke-width="1"/>
+          <text x="485" y="179">Próstata</text>
+          <line x1="440" y1="222" x2="500" y2="222" stroke="#8A8F90" stroke-width="1"/>
+          <text x="505" y="226">Ducto ejaculatório</text>
+          <line x1="330" y1="235" x2="500" y2="255" stroke="#8A8F90" stroke-width="1"/>
+          <text x="505" y="259">Uretra</text>
+          <line x1="200" y1="255" x2="90" y2="220" stroke="#8A8F90" stroke-width="1"/>
+          <text x="20" y="224">Epidídimo</text>
+          <line x1="140" y1="278" x2="90" y2="300" stroke="#8A8F90" stroke-width="1"/>
+          <text x="20" y="304">Testículo (escroto)</text>
+          <line x1="220" y1="240" x2="230" y2="200" stroke="#8A8F90" stroke-width="1"/>
+          <text x="200" y="196">Ducto deferente</text>
+        </g>
+      </svg>
+      <figcaption>Esquema simplificado (vista lateral) das principais estruturas do sistema genital masculino.</figcaption>
+    </figure>
+
+    <table>
+      <thead><tr><th>Estrutura</th><th>Função principal</th></tr></thead>
+      <tbody>
+        <tr><td>Testículos</td><td>Produzem espermatozoides e o hormônio testosterona</td></tr>
+        <tr><td>Epidídimo</td><td>Armazena e amadurece os espermatozoides</td></tr>
+        <tr><td>Ducto deferente</td><td>Transporta os espermatozoides até a uretra</td></tr>
+        <tr><td>Vesículas seminais</td><td>Produzem líquido rico em frutose, que nutre os espermatozoides</td></tr>
+        <tr><td>Próstata</td><td>Produz líquido alcalino que protege os espermatozoides da acidez vaginal</td></tr>
+        <tr><td>Uretra</td><td>Conduz sêmen (ou urina, em momentos distintos) para fora do corpo</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="topico-5" class="topic">
+    <span class="topic__eyebrow"><span class="dot" style="background:var(--gold)"></span>TÓPICO 5</span>
+    <h2>Ciclo menstrual</h2>
+    <p class="lede">O ciclo menstrual dura, em média, 28 dias e é controlado por hormônios que preparam o corpo para uma possível gravidez a cada mês.</p>
+
+    <figure>
+      <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Roda das fases do ciclo menstrual">
+        <circle cx="210" cy="210" r="150" fill="none" stroke="#D8E2DD" stroke-width="34"/>
+        <path d="M210 60 A150 150 0 0 1 300.6 106.5 L 249 152 A80 80 0 0 0 210 140 Z" fill="#B98A22" opacity="0.85"/>
+        <path d="M300.6 106.5 A150 150 0 0 1 210 360 L210 280 A80 80 0 0 0 249 152 Z" fill="#3A4E82" opacity="0.85"/>
+        <path d="M210 360 A150 150 0 0 1 119.4 313.5 L 171 268 A80 80 0 0 0 210 280 Z" fill="#227A72" opacity="0.85"/>
+        <path d="M119.4 313.5 A150 150 0 0 1 210 60 L210 140 A80 80 0 0 0 171 268 Z" fill="#C0466A" opacity="0.85"/>
+        <circle cx="210" cy="210" r="80" fill="#FFFFFF"/>
+        <text x="210" y="205" text-anchor="middle" font-family="Fraunces, serif" font-size="17" font-weight="700" fill="#1E2A32">Ciclo</text>
+        <text x="210" y="228" text-anchor="middle" font-family="Karla, sans-serif" font-size="13" fill="#4A5A61">~28 dias</text>
+        <g font-family="Karla, sans-serif" font-size="12.5" font-weight="700">
+          <text x="330" y="95" fill="#B98A22">Ovulação</text>
+          <text x="325" y="240" fill="#3A4E82">Fase lútea</text>
+          <text x="140" y="345" fill="#227A72">Menstruação</text>
+          <text x="55" y="150" fill="#C0466A">Fase folicular</text>
+        </g>
+        <g font-family="Karla, sans-serif" font-size="11" fill="#4A5A61">
+          <text x="330" y="110">dia 14</text>
+          <text x="325" y="255">dias 15–28</text>
+          <text x="140" y="360">dias 1–5</text>
+          <text x="55" y="165">dias 1–13</text>
+        </g>
+      </svg>
+      <figcaption>As quatro fases do ciclo menstrual, com a duração aproximada de cada uma.</figcaption>
+    </figure>
+
+    <figure>
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Variação dos hormônios ao longo do ciclo menstrual">
+        <line x1="50" y1="180" x2="670" y2="180" stroke="#D8E2DD" stroke-width="2"/>
+        <line x1="50" y1="20" x2="50" y2="180" stroke="#D8E2DD" stroke-width="2"/>
+        <text x="360" y="205" text-anchor="middle" font-family="Karla, sans-serif" font-size="12" fill="#4A5A61">Dias do ciclo (1 a 28)</text>
+        <path d="M50 170 C 150 160, 250 60, 300 45 C 320 40, 340 100, 360 150 C 450 165, 550 168, 670 165" fill="none" stroke="#C0466A" stroke-width="3"/>
+        <path d="M50 175 C 150 172, 280 168, 330 160 C 345 60, 355 55, 380 60 C 450 75, 550 95, 670 150" fill="none" stroke="#3A4E82" stroke-width="3"/>
+        <path d="M50 178 C 200 176, 300 175, 335 172 C 342 40, 348 35, 355 172 C 400 174, 550 173, 670 173" fill="none" stroke="#B98A22" stroke-width="3"/>
+        <g font-family="Karla, sans-serif" font-size="11.5" font-weight="700">
+          <text x="560" y="40" fill="#C0466A">Estrogênio</text>
+          <text x="560" y="100" fill="#3A4E82">Progesterona</text>
+          <text x="330" y="30" fill="#B98A22">Pico de LH (ovulação)</text>
+        </g>
+      </svg>
+      <figcaption>Representação simplificada das oscilações hormonais: o pico de LH desencadeia a ovulação por volta do 14º dia.</figcaption>
+    </figure>
+
+    <table>
+      <thead><tr><th>Fase</th><th>Período aproximado</th><th>O que acontece</th></tr></thead>
+      <tbody>
+        <tr><td>Menstruação</td><td>Dias 1–5</td><td>Descamação do endométrio, eliminado pela vagina</td></tr>
+        <tr><td>Fase folicular</td><td>Dias 1–13</td><td>FSH estimula o crescimento dos folículos ovarianos; estrogênio reconstrói o endométrio</td></tr>
+        <tr><td>Ovulação</td><td>Dia 14 (aprox.)</td><td>Pico de LH provoca a liberação do óvulo pelo ovário</td></tr>
+        <tr><td>Fase lútea</td><td>Dias 15–28</td><td>Corpo lúteo produz progesterona, preparando o endométrio para a nidação</td></tr>
+      </tbody>
+    </table>
+
+    <div class="panel panel--tint-gold">
+      <h3>E se não houver fecundação?</h3>
+      <p>Sem gravidez, o corpo lúteo se degenera, os níveis de progesterona e estrogênio caem bruscamente, o endométrio se desprende e um novo ciclo se inicia com a menstruação.</p>
+    </div>
+  </section>
+
+  <section id="topico-6" class="topic">
+    <span class="topic__eyebrow"><span class="dot" style="background:var(--teal)"></span>TÓPICO 6</span>
+    <h2>Métodos contraceptivos</h2>
+    <p class="lede">Os métodos contraceptivos evitam a gravidez por diferentes mecanismos e apresentam eficácias e proteções distintas contra Infecções Sexualmente Transmissíveis (ISTs).</p>
+
+    <table>
+      <thead><tr><th>Categoria</th><th>Método</th><th>Como age</th><th>Protege contra ISTs</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="2">Barreira</td><td>Preservativo masculino/feminino</td><td>Impede fisicamente o contato entre espermatozoide e óvulo</td><td><span class="tag tag--sim">Sim</span></td></tr>
+        <tr><td>Diafragma</td><td>Bloqueia a entrada do colo do útero</td><td><span class="tag tag--nao">Não</span></td></tr>
+        <tr><td rowspan="3">Hormonais</td><td>Pílula anticoncepcional</td><td>Inibe a ovulação</td><td><span class="tag tag--nao">Não</span></td></tr>
+        <tr><td>Injetável / implante</td><td>Libera hormônios que inibem a ovulação</td><td><span class="tag tag--nao">Não</span></td></tr>
+        <tr><td>DIU hormonal</td><td>Libera hormônio localmente no útero</td><td><span class="tag tag--nao">Não</span></td></tr>
+        <tr><td>Dispositivo intrauterino</td><td>DIU de cobre</td><td>Ação espermicida mecânica, sem hormônios</td><td><span class="tag tag--nao">Não</span></td></tr>
+        <tr><td rowspan="2">Comportamentais (naturais)</td><td>Tabelinha (calendário)</td><td>Evita relações no período fértil estimado</td><td><span class="tag tag--nao">Não</span></td></tr>
+        <tr><td>Temperatura basal / muco cervical</td><td>Identifica sinais do período fértil</td><td><span class="tag tag--nao">Não</span></td></tr>
+        <tr><td rowspan="2">Cirúrgicos definitivos</td><td>Laqueadura tubária</td><td>Obstrução/secção das tubas uterinas</td><td><span class="tag tag--nao">Não</span></td></tr>
+        <tr><td>Vasectomia</td><td>Obstrução/secção dos ductos deferentes</td><td><span class="tag tag--nao">Não</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="panel panel--tint-teal">
+      <h3>Ponto de atenção</h3>
+      <p>Métodos comportamentais (como a tabelinha) dependem da regularidade do ciclo menstrual e têm taxas de falha mais altas do que métodos de barreira ou hormonais. Apenas o preservativo protege simultaneamente contra a gravidez e contra ISTs.</p>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <div class="quiz-intro">
+      <h2>Questionário de fixação</h2>
+      <p>18 questões — 3 para cada tema, em ordem crescente de dificuldade. Responda a todas e clique em "Corrigir questionário" para ver seu resultado e o gabarito comentado.</p>
+    </div>
+    <form id="quiz-form">
+
+      <div class="quiz-group">
+        <div class="quiz-group__title"><span class="num-badge">1</span> Tipos de reprodução</div>
+
+        <fieldset class="question" data-topic="1" data-correct="b">
+          <legend><span class="q-text">1. Qual alternativa descreve corretamente a reprodução assexuada?</span><span class="badge badge--facil">Fácil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t1q1" value="a"> Envolve a fusão de gametas de dois progenitores diferentes</label></li>
+            <li><label><input type="radio" name="t1q1" value="b"> Produz descendentes geneticamente idênticos ao progenitor</label></li>
+            <li><label><input type="radio" name="t1q1" value="c"> Sempre depende da meiose para gerar variabilidade</label></li>
+            <li><label><input type="radio" name="t1q1" value="d"> Ocorre exclusivamente em animais vertebrados</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="1" data-correct="b">
+          <legend><span class="q-text">2. A hidra (Hydra sp.) reproduz-se assexuadamente principalmente por:</span><span class="badge badge--medio">Médio</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t1q2" value="a"> Bipartição binária</label></li>
+            <li><label><input type="radio" name="t1q2" value="b"> Brotamento</label></li>
+            <li><label><input type="radio" name="t1q2" value="c"> Partenogênese</label></li>
+            <li><label><input type="radio" name="t1q2" value="d"> Fecundação externa</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="1" data-correct="b">
+          <legend><span class="q-text">3. Sobre a variabilidade genética resultante dos tipos de reprodução, é correto afirmar que:</span><span class="badge badge--dificil">Difícil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t1q3" value="a"> A assexuada gera mais variabilidade, pois duplica o DNA rapidamente</label></li>
+            <li><label><input type="radio" name="t1q3" value="b"> A sexuada favorece a variabilidade genética devido à recombinação na meiose e à fusão de gametas distintos</label></li>
+            <li><label><input type="radio" name="t1q3" value="c"> Ambos os tipos produzem sempre clones</label></li>
+            <li><label><input type="radio" name="t1q3" value="d"> A variabilidade genética independe do tipo de reprodução</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+      </div>
+
+      <div class="quiz-group">
+        <div class="quiz-group__title"><span class="num-badge">2</span> Fases da vida humana</div>
+
+        <fieldset class="question" data-topic="2" data-correct="b">
+          <legend><span class="q-text">4. O surgimento da menarca (primeira menstruação) é típico de qual fase da vida?</span><span class="badge badge--facil">Fácil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t2q1" value="a"> Infância</label></li>
+            <li><label><input type="radio" name="t2q1" value="b"> Puberdade</label></li>
+            <li><label><input type="radio" name="t2q1" value="c"> Fase adulta</label></li>
+            <li><label><input type="radio" name="t2q1" value="d"> Velhice</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="2" data-correct="b">
+          <legend><span class="q-text">5. Segundo a Organização Mundial da Saúde (OMS), a adolescência corresponde aproximadamente à faixa etária de:</span><span class="badge badge--medio">Médio</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t2q2" value="a"> 0 a 9 anos</label></li>
+            <li><label><input type="radio" name="t2q2" value="b"> 10 a 19 anos</label></li>
+            <li><label><input type="radio" name="t2q2" value="c"> 20 a 29 anos</label></li>
+            <li><label><input type="radio" name="t2q2" value="d"> 30 a 39 anos</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="2" data-correct="a">
+          <legend><span class="q-text">6. As alterações hormonais da puberdade são desencadeadas primariamente pela ativação de qual eixo hormonal?</span><span class="badge badge--dificil">Difícil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t2q3" value="a"> Eixo hipotálamo-hipófise-gônadas</label></li>
+            <li><label><input type="radio" name="t2q3" value="b"> Eixo hipotálamo-tireoide</label></li>
+            <li><label><input type="radio" name="t2q3" value="c"> Eixo adrenal isolado</label></li>
+            <li><label><input type="radio" name="t2q3" value="d"> Eixo renina-angiotensina</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+      </div>
+
+      <div class="quiz-group">
+        <div class="quiz-group__title"><span class="num-badge">3</span> Sistema genital feminino</div>
+
+        <fieldset class="question" data-topic="3" data-correct="b">
+          <legend><span class="q-text">7. Os óvulos são produzidos e armazenados em qual estrutura do sistema genital feminino?</span><span class="badge badge--facil">Fácil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t3q1" value="a"> Útero</label></li>
+            <li><label><input type="radio" name="t3q1" value="b"> Ovários</label></li>
+            <li><label><input type="radio" name="t3q1" value="c"> Tubas uterinas</label></li>
+            <li><label><input type="radio" name="t3q1" value="d"> Vagina</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="3" data-correct="c">
+          <legend><span class="q-text">8. A fecundação (encontro entre óvulo e espermatozoide) ocorre normalmente:</span><span class="badge badge--medio">Médio</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t3q2" value="a"> No útero</label></li>
+            <li><label><input type="radio" name="t3q2" value="b"> Na vagina</label></li>
+            <li><label><input type="radio" name="t3q2" value="c"> Na ampola da tuba uterina</label></li>
+            <li><label><input type="radio" name="t3q2" value="d"> No ovário</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="3" data-correct="b">
+          <legend><span class="q-text">9. A fixação do embrião na parede do útero, após a fecundação, é chamada de:</span><span class="badge badge--dificil">Difícil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t3q3" value="a"> Ovulação</label></li>
+            <li><label><input type="radio" name="t3q3" value="b"> Nidação (implantação)</label></li>
+            <li><label><input type="radio" name="t3q3" value="c"> Menstruação</label></li>
+            <li><label><input type="radio" name="t3q3" value="d"> Capacitação espermática</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+      </div>
+
+      <div class="quiz-group">
+        <div class="quiz-group__title"><span class="num-badge">4</span> Sistema genital masculino</div>
+
+        <fieldset class="question" data-topic="4" data-correct="b">
+          <legend><span class="q-text">10. Onde são produzidos os espermatozoides?</span><span class="badge badge--facil">Fácil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t4q1" value="a"> Próstata</label></li>
+            <li><label><input type="radio" name="t4q1" value="b"> Testículos</label></li>
+            <li><label><input type="radio" name="t4q1" value="c"> Epidídimo</label></li>
+            <li><label><input type="radio" name="t4q1" value="d"> Vesículas seminais</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="4" data-correct="b">
+          <legend><span class="q-text">11. Qual estrutura amadurece e armazena temporariamente os espermatozoides antes da ejaculação?</span><span class="badge badge--medio">Médio</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t4q2" value="a"> Ducto deferente</label></li>
+            <li><label><input type="radio" name="t4q2" value="b"> Epidídimo</label></li>
+            <li><label><input type="radio" name="t4q2" value="c"> Uretra</label></li>
+            <li><label><input type="radio" name="t4q2" value="d"> Glândula bulbouretral</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="4" data-correct="a">
+          <legend><span class="q-text">12. O líquido seminal recebe contribuição de diversas glândulas. Qual alternativa associa corretamente a glândula à sua função?</span><span class="badge badge--dificil">Difícil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t4q3" value="a"> Próstata — produz líquido alcalino que protege os espermatozoides da acidez vaginal</label></li>
+            <li><label><input type="radio" name="t4q3" value="b"> Testículo — produz o líquido lubrificante pré-ejaculatório</label></li>
+            <li><label><input type="radio" name="t4q3" value="c"> Epidídimo — produz frutose para nutrir os espermatozoides</label></li>
+            <li><label><input type="radio" name="t4q3" value="d"> Bexiga — produz hormônios que ativam os espermatozoides</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+      </div>
+
+      <div class="quiz-group">
+        <div class="quiz-group__title"><span class="num-badge">5</span> Ciclo menstrual</div>
+
+        <fieldset class="question" data-topic="5" data-correct="c">
+          <legend><span class="q-text">13. O ciclo menstrual tem, em média, duração de quantos dias?</span><span class="badge badge--facil">Fácil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t5q1" value="a"> 7 dias</label></li>
+            <li><label><input type="radio" name="t5q1" value="b"> 14 dias</label></li>
+            <li><label><input type="radio" name="t5q1" value="c"> 28 dias</label></li>
+            <li><label><input type="radio" name="t5q1" value="d"> 40 dias</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="5" data-correct="b">
+          <legend><span class="q-text">14. O pico do hormônio luteinizante (LH) é responsável por desencadear qual evento do ciclo menstrual?</span><span class="badge badge--medio">Médio</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t5q2" value="a"> Menstruação</label></li>
+            <li><label><input type="radio" name="t5q2" value="b"> Ovulação</label></li>
+            <li><label><input type="radio" name="t5q2" value="c"> Formação do endométrio</label></li>
+            <li><label><input type="radio" name="t5q2" value="d"> Fecundação</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="5" data-correct="b">
+          <legend><span class="q-text">15. Caso não ocorra fecundação, o que acontece com o corpo lúteo e quais as consequências hormonais?</span><span class="badge badge--dificil">Difícil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t5q3" value="a"> Continua ativo e aumenta a progesterona indefinidamente</label></li>
+            <li><label><input type="radio" name="t5q3" value="b"> Degenera-se; progesterona e estrogênio caem; o endométrio descama, iniciando a menstruação</label></li>
+            <li><label><input type="radio" name="t5q3" value="c"> Transforma-se em folículo primário para um novo ciclo</label></li>
+            <li><label><input type="radio" name="t5q3" value="d"> É expelido junto ao óvulo não fecundado</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+      </div>
+
+      <div class="quiz-group">
+        <div class="quiz-group__title"><span class="num-badge">6</span> Métodos contraceptivos</div>
+
+        <fieldset class="question" data-topic="6" data-correct="c">
+          <legend><span class="q-text">16. Qual é o único método contraceptivo que também previne Infecções Sexualmente Transmissíveis (ISTs)?</span><span class="badge badge--facil">Fácil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t6q1" value="a"> Pílula anticoncepcional</label></li>
+            <li><label><input type="radio" name="t6q1" value="b"> DIU de cobre</label></li>
+            <li><label><input type="radio" name="t6q1" value="c"> Preservativo (camisinha)</label></li>
+            <li><label><input type="radio" name="t6q1" value="d"> Tabelinha</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="6" data-correct="c">
+          <legend><span class="q-text">17. A vasectomia e a laqueadura tubária são classificadas como métodos:</span><span class="badge badge--medio">Médio</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t6q2" value="a"> Hormonais</label></li>
+            <li><label><input type="radio" name="t6q2" value="b"> De barreira</label></li>
+            <li><label><input type="radio" name="t6q2" value="c"> Cirúrgicos definitivos</label></li>
+            <li><label><input type="radio" name="t6q2" value="d"> Comportamentais</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+
+        <fieldset class="question" data-topic="6" data-correct="b">
+          <legend><span class="q-text">18. Sobre os métodos contraceptivos naturais (tabelinha, temperatura basal), é correto afirmar que:</span><span class="badge badge--dificil">Difícil</span></legend>
+          <ul class="options">
+            <li><label><input type="radio" name="t6q3" value="a"> Têm eficácia semelhante à dos métodos hormonais</label></li>
+            <li><label><input type="radio" name="t6q3" value="b"> Dependem da regularidade do ciclo e têm taxas de falha mais altas que métodos de barreira ou hormonais</label></li>
+            <li><label><input type="radio" name="t6q3" value="c"> Impedem tanto a gravidez quanto a transmissão de ISTs</label></li>
+            <li><label><input type="radio" name="t6q3" value="d"> Utilizam substâncias químicas espermicidas</label></li>
+          </ul>
+          <div class="result-pill"></div>
+        </fieldset>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn" id="btn-corrigir">Corrigir questionário</button>
+      </div>
+    </form>
+  </section>
+
+  <section id="resultados">
+    <span class="topic__eyebrow"><span class="dot" style="background:var(--indigo)"></span>RESULTADO</span>
+    <h2>Seu desempenho</h2>
+
+    <div class="results-grid">
+      <div style="text-align:center;">
+        <div class="pie" id="pie-chart">
+          <div class="pie-label">
+            <span class="pct" id="pie-pct">0%</span>
+            <span class="cap" id="pie-cap">de acertos</span>
+          </div>
+        </div>
+        <div class="legend" style="justify-content:center;">
+          <span><i style="background:var(--correct)"></i>Acertos</span>
+          <span><i style="background:var(--incorrect)"></i>Erros</span>
+        </div>
+      </div>
+      <div>
+        <p id="performance-summary" style="font-size:16.5px; margin-bottom:16px;"></p>
+        <div class="topic-bars" id="topic-bars"></div>
+      </div>
+    </div>
+
+    <div class="panel study-plan">
+      <h3>Sugestão de estudo orientado</h3>
+      <p id="study-intro"></p>
+      <ol id="study-list"></ol>
+    </div>
+  </section>
+
+  <section id="gabarito">
+    <span class="topic__eyebrow"><span class="dot" style="background:var(--teal)"></span>GABARITO</span>
+    <h2>Gabarito comentado</h2>
+    <div id="gabarito-list"></div>
+  </section>
+
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4>MATERIAL DE REFERÊNCIA</h4>
+      <p>Este conteúdo dá continuidade à aula anterior do curso. <em>[Substitua por: título/data da aula anterior e, se houver, o link ou nome do arquivo de referência]</em>.</p>
+    </div>
+    <div>
+      <h4>CONTATO DA PROFESSORA</h4>
+      <p>Prof.ª Samanta — Curso Preparatório Professora Samanta</p>
+      <p><em>[Substitua por: e-mail, WhatsApp ou rede social de contato, no mesmo padrão usado no material anterior]</em></p>
+    </div>
+  </div>
+  <div class="footer-note">© Curso Preparatório Professora Samanta — material de uso didático.</div>
+</footer>
+
+<script>
+  const TOPIC_NAMES = {
+    1: "Tipos de reprodução",
+    2: "Fases da vida humana",
+    3: "Sistema genital feminino",
+    4: "Sistema genital masculino",
+    5: "Ciclo menstrual",
+    6: "Métodos contraceptivos"
+  };
+
+  const STUDY_TIPS = {
+    1: "Revise a diferença entre reprodução sexuada e assexuada, focando nos mecanismos (bipartição, brotamento, fragmentação, esporulação, partenogênese) e no motivo pelo qual a reprodução sexuada gera mais variabilidade genética.",
+    2: "Reveja as fases da vida e seus marcos biológicos (menarca, semenarca, puberdade) e o papel do eixo hipotálamo-hipófise-gônadas no desencadeamento das mudanças puberais.",
+    3: "Reforce a identificação das estruturas do sistema genital feminino no esquema e o trajeto da fecundação até a nidação no endométrio.",
+    4: "Releia a função de cada estrutura do sistema genital masculino, com atenção à diferença entre epidídimo, ducto deferente, vesículas seminais e próstata.",
+    5: "Estude novamente as quatro fases do ciclo menstrual, a ação do LH na ovulação e o que ocorre hormonalmente quando não há fecundação.",
+    6: "Revise a classificação dos métodos contraceptivos (barreira, hormonais, DIU, comportamentais, cirúrgicos) e qual é o único que também previne ISTs."
+  };
+
+  const EXPLANATIONS = {
+    t1q1: "A reprodução assexuada envolve um único progenitor e produz descendentes geneticamente idênticos a ele (clones), sem fusão de gametas.",
+    t1q2: "A hidra é um exemplo clássico de reprodução por brotamento: um broto se forma no corpo do progenitor e se destaca como um novo indivíduo.",
+    t1q3: "Na reprodução sexuada, a recombinação gênica durante a meiose e a fusão de gametas de dois progenitores geneticamente distintos aumentam a variabilidade genética da espécie.",
+    t2q1: "A menarca (primeira menstruação) é um marco característico da puberdade, período de maturação sexual.",
+    t2q2: "A OMS define a adolescência como o período entre 10 e 19 anos de idade.",
+    t2q3: "O eixo hipotálamo-hipófise-gônadas é ativado na puberdade: o hipotálamo libera GnRH, que estimula a hipófise a secretar FSH e LH, ativando as gônadas.",
+    t3q1: "Os ovários produzem e armazenam os óvulos, além de secretar estrogênio e progesterona.",
+    t3q2: "A fecundação ocorre normalmente na ampola da tuba uterina, região onde o óvulo encontra os espermatozoides.",
+    t3q3: "A fixação do embrião na parede do útero é chamada de nidação (ou implantação), marcando o início da gestação.",
+    t4q1: "Os espermatozoides são produzidos nos testículos, por meio do processo de espermatogênese.",
+    t4q2: "O epidídimo é responsável por armazenar e finalizar a maturação dos espermatozoides antes da ejaculação.",
+    t4q3: "A próstata produz um líquido alcalino que neutraliza a acidez da vagina, protegendo os espermatozoides; as vesículas seminais, por sua vez, fornecem frutose.",
+    t5q1: "O ciclo menstrual dura, em média, 28 dias, podendo variar entre as pessoas.",
+    t5q2: "O pico de LH (hormônio luteinizante) desencadeia a ovulação, por volta do 14º dia do ciclo.",
+    t5q3: "Sem fecundação, o corpo lúteo se degenera, os níveis de progesterona e estrogênio caem, e o endométrio descama, iniciando a menstruação.",
+    t6q1: "O preservativo (camisinha) é o único método contraceptivo que também protege contra Infecções Sexualmente Transmissíveis (ISTs).",
+    t6q2: "Vasectomia e laqueadura tubária são métodos cirúrgicos definitivos, que impedem permanentemente a fecundação.",
+    t6q3: "Métodos naturais dependem da regularidade do ciclo menstrual para estimar o período fértil, o que os torna menos confiáveis que métodos de barreira ou hormonais."
+  };
+
+  const OPTION_LETTERS = ["a","b","c","d"];
+
+  document.getElementById("btn-corrigir").addEventListener("click", function(){
+    const questions = document.querySelectorAll("fieldset.question");
+    let totalCorrect = 0;
+    const topicStats = {1:{correct:0,total:0},2:{correct:0,total:0},3:{correct:0,total:0},4:{correct:0,total:0},5:{correct:0,total:0},6:{correct:0,total:0}};
+    const gabaritoList = document.getElementById("gabarito-list");
+    gabaritoList.innerHTML = "";
+
+    questions.forEach((fs, idx) => {
+      const topic = fs.dataset.topic;
+      const correctVal = fs.dataset.correct;
+      const input = fs.querySelector("input");
+      const name = input.name;
+      const checked = fs.querySelector('input[name="' + name + '"]:checked');
+      const selectedVal = checked ? checked.value : null;
+      const isCorrect = selectedVal === correctVal;
+
+      topicStats[topic].total += 1;
+      if (isCorrect) { topicStats[topic].correct += 1; totalCorrect += 1; }
+
+      fs.classList.remove("is-correct","is-incorrect");
+      fs.classList.add(isCorrect ? "is-correct" : "is-incorrect");
+
+      fs.querySelectorAll(".options label").forEach(lbl => lbl.classList.remove("was-selected","is-answer"));
+      if (checked) checked.closest("label").classList.add("was-selected");
+      const correctInput = fs.querySelector('input[value="' + correctVal + '"]');
+      if (correctInput) correctInput.closest("label").classList.add("is-answer");
+
+      const pill = fs.querySelector(".result-pill");
+      pill.textContent = isCorrect ? "✓ Você acertou!" : (selectedVal ? "✗ Você errou. Veja o gabarito comentado abaixo." : "✗ Questão não respondida.");
+
+      const qNum = idx + 1;
+      const qLegendText = fs.querySelector(".q-text").textContent;
+      const difficultyBadge = fs.querySelector(".badge").outerHTML;
+      const item = document.createElement("div");
+      item.className = "gabarito-item";
+      item.innerHTML =
+        '<div class="g-head"><span>' + qNum + '. ' + TOPIC_NAMES[topic] + '</span>' + difficultyBadge + '</div>' +
+        '<p class="g-explain"><span class="g-answer">Resposta correta: ' + correctVal.toUpperCase() + '.</span> ' + EXPLANATIONS[name] + '</p>';
+      gabaritoList.appendChild(item);
+    });
+
+    // Pie chart
+    const pct = Math.round((totalCorrect / questions.length) * 100);
+    const pie = document.getElementById("pie-chart");
+    pie.style.background = "conic-gradient(var(--correct) 0% " + pct + "%, var(--incorrect) " + pct + "% 100%)";
+    document.getElementById("pie-pct").textContent = pct + "%";
+    document.getElementById("pie-cap").textContent = totalCorrect + " de " + questions.length + " acertos";
+
+    // Topic bars
+    const topicBars = document.getElementById("topic-bars");
+    topicBars.innerHTML = "";
+    const ranked = Object.keys(topicStats).map(t => ({
+      topic: t,
+      name: TOPIC_NAMES[t],
+      correct: topicStats[t].correct,
+      total: topicStats[t].total,
+      ratio: topicStats[t].correct / topicStats[t].total
+    })).sort((a,b) => b.ratio - a.ratio);
+
+    ranked.forEach(r => {
+      const row = document.createElement("div");
+      row.className = "topic-bar__row";
+      const barColor = r.ratio >= 1 ? "var(--correct)" : (r.ratio >= 0.5 ? "var(--gold)" : "var(--incorrect)");
+      row.innerHTML =
+        '<span>' + r.name + '</span>' +
+        '<span class="topic-bar__track"><span class="topic-bar__fill" style="width:' + (r.ratio*100) + '%; background:' + barColor + ';"></span></span>' +
+        '<span class="topic-bar__score">' + r.correct + '/' + r.total + '</span>';
+      topicBars.appendChild(row);
+    });
+
+    // Summary text
+    const best = ranked[0];
+    const worst = ranked[ranked.length - 1];
+    let level;
+    if (pct >= 80) level = "Excelente desempenho! Você domina a maior parte do conteúdo.";
+    else if (pct >= 60) level = "Bom desempenho, mas ainda há pontos específicos para reforçar.";
+    else level = "Desempenho abaixo do esperado — é importante retomar o conteúdo com calma.";
+
+    document.getElementById("performance-summary").innerHTML =
+      level + " Você teve mais facilidade em <strong>" + best.name + "</strong> (" + best.correct + "/" + best.total + ") e mais dificuldade em <strong>" + worst.name + "</strong> (" + worst.correct + "/" + worst.total + ").";
+
+    // Study plan: order topics from lowest to highest ratio, only include those with ratio < 1
+    const needsReview = ranked.filter(r => r.ratio < 1).sort((a,b) => a.ratio - b.ratio);
+    const studyIntro = document.getElementById("study-intro");
+    const studyList = document.getElementById("study-list");
+    studyList.innerHTML = "";
+
+    if (needsReview.length === 0) {
+      studyIntro.textContent = "Parabéns! Você acertou todas as questões de todos os temas. Continue revisando periodicamente para manter o conteúdo fresco.";
+    } else {
+      studyIntro.textContent = "Com base no seu desempenho, sugerimos revisar os temas na seguinte ordem de prioridade:";
+      needsReview.forEach(r => {
+        const li = document.createElement("li");
+        li.innerHTML = "<strong>" + r.name + "</strong> (" + r.correct + "/" + r.total + " acertos) — " + STUDY_TIPS[r.topic];
+        studyList.appendChild(li);
+      });
+    }
+
+    document.getElementById("resultados").classList.add("show");
+    document.getElementById("gabarito").classList.add("show");
+    document.getElementById("resultados").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+</script>
+</body>
+</html>
